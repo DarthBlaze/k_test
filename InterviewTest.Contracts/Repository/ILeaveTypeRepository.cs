@@ -7,6 +7,6 @@ namespace InterviewTest.Contracts.Repository
 {
     public interface ILeaveTypeRepository : IRepository<LeaveType>
     {
-
+        IEnumerable<LeaveType> GetAllLeaveTypes();
     }
 }

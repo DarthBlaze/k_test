@@ -17,5 +17,7 @@ namespace InterviewTest.Repository.Repositories
         public LeaveType GetLeaveType(int id) => Context.Set<LeaveType>()
                 .Where(leaveType => leaveType.Id == id)
                 .FirstOrDefault();
+
+        public IEnumerable<LeaveType> GetAllLeaveTypes() => Context.Set<LeaveType>().ToList();
     }
 }
