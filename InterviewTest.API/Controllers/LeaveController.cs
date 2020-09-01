@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 namespace InterviewTest.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class LeaveController : ControllerBase
     {
         private readonly ILeaveManager LeaveManager;

@@ -12,7 +12,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using VueCliMiddleware;
 
 namespace InterviewTest.API
 {
@@ -33,11 +32,17 @@ namespace InterviewTest.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMemoryCache();
-            services.AddControllers();
-            services.AddSpaStaticFiles(configuration =>
+
+            services.AddCors(options =>
             {
-                configuration.RootPath = "InterviewTest.Client";
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                      .AllowAnyMethod()
+                      .AllowAnyHeader()
+                .Build());
             });
+
+            services.AddControllers();
 
             var connection = string.Format(
                 "Server={0};Database={1};Trusted_Connection=True;MultipleActiveResultSets=True;Integrated Security=true;",
@@ -59,6 +64,8 @@ namespace InterviewTest.API
             services.AddSingleton(mapper);
             services.AddScoped<IUnitOfWork, UnitOfWork.UnitOfWork>();
             services.AddTransient<ILeaveManager, LeaveManager>();
+            services.AddTransient<ILeaveTypeManager, LeaveTypeManager>();
+            services.AddAutoMapper(typeof(Startup));
         }
 
 
@@ -70,28 +77,17 @@ namespace InterviewTest.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseHttpsRedirection();
+
             app.UseRouting();
-            app.UseSpaStaticFiles();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
-            app.UseSpa(spa =>
-            {
-                if (env.IsDevelopment())
-                    spa.Options.SourcePath = "InterviewTest.Client";
-                else
-                    spa.Options.SourcePath = "dist";
-
-                if (env.IsDevelopment())
-                {
-                    spa.UseVueCli(npmScript: "serve");
-                }
-
-            });
+            app.UseCors("CorsPolicy");
         }
     }
 }
