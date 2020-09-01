@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using InterviewTest.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace InterviewTest.DataAccess
@@ -9,5 +10,8 @@ namespace InterviewTest.DataAccess
         {
 
         }
+
+        public virtual DbSet<Leave> Leaves { get; set; }
+        public virtual DbSet<LeaveType> LeaveTypes { get; set; }
     }
 }

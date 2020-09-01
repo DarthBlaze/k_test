@@ -2,11 +2,24 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>KTest</RootNamespace>
+    <RootNamespace>InterviewTest.API</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="VueCliMiddleware" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InterviewTest.BusinessLogic\InterviewTest.BusinessLogic.csproj" />
+    <ProjectReference Include="..\InterviewTest.Contracts\InterviewTest.Contracts.csproj" />
+    <ProjectReference Include="..\InterviewTest.DataAccess\InterviewTest.DataAccess.csproj" />
+    <ProjectReference Include="..\InterviewTest.Domain\InterviewTest.Domain.csproj" />
+    <ProjectReference Include="..\InterviewTest.Persistance\InterviewTest.UnitOfWork.csproj" />
   </ItemGroup>
 
 

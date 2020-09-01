@@ -4,4 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\InterviewTest.Contracts\InterviewTest.Contracts.csproj" />
+    <ProjectReference Include="..\InterviewTest.DataAccess\InterviewTest.DataAccess.csproj" />
+    <ProjectReference Include="..\InterviewTest.Repository\InterviewTest.Repository.csproj" />
+  </ItemGroup>
+
 </Project>

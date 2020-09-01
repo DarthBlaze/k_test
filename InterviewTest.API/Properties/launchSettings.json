@@ -12,18 +12,22 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchUrl": "InterviewTest",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SERVER": "localhost\\SQLEXPRESS",
+        "DATABASE": "InterviewTest_Dev"
       }
     },
-    "Vue_JS_Template_AspNet_Core_3._1_Web_API1": {
+    "InterviewTest.API": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchUrl": "InterviewTest",
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SERVER": "localhost\\SQLEXPRESS",
+        "DATABASE": "InterviewTest_Dev"
       }
     }
   }
