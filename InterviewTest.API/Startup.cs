@@ -21,6 +21,10 @@ namespace InterviewTest.API
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            Configuration = new ConfigurationBuilder()
+                                .AddEnvironmentVariables()
+                                .AddJsonFile("appsettings.json")
+                                .Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -36,9 +40,10 @@ namespace InterviewTest.API
             });
 
             var connection = string.Format(
-                "Server={0};Database={1};",
-                Environment.GetEnvironmentVariable("SERVER"),
-                Environment.GetEnvironmentVariable("DATABASE"));
+                "Server={0};Database={1};Trusted_Connection=True;MultipleActiveResultSets=True;Integrated Security=true;",
+                Environment.GetEnvironmentVariable("SERVER") ?? Configuration["Database:SERVER"],
+                Environment.GetEnvironmentVariable("DATABASE") ?? Configuration["Database:DATABASE"]
+                );
 
             services.AddDbContext<InterviewTestContext>(options => options.UseSqlServer(connection));
 

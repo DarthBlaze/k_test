@@ -27,18 +27,32 @@ namespace InterviewTest.BusinessLogic.Managers
 
         public bool NewLeave(Leave leave, out string message)
         {
-            try
-            {
-                UnitOfWork.Leaves.Add(leave);
-                message = "Leave registered succesfully";
-                return true;    
-            }
-            catch (Exception ex)
-            {
+            UnitOfWork.Leaves.Add(leave);
+            UnitOfWork.Complete();
+            message = "Leave registered succesfully";
+            return true;
+        }
 
-                message = ex.Message;
+        public Leave UpdateLeave(Leave leave, out string message)
+        {
+            UnitOfWork.Leaves.Update(leave);
+            UnitOfWork.Complete();
+            message = "Leave updated sucessfully";
+            return UnitOfWork.Leaves.Get(leave.Id);
+        }
+
+        public bool DeleteLeave(int leaveId, out string message)
+        {
+            var leaveToBeDeleted = UnitOfWork.Leaves.GetLeave(leaveId);
+            if (leaveToBeDeleted == null)
+            {
+                message = "This leave does not exist";
                 return false;
             }
+
+            UnitOfWork.Leaves.Remove(leaveToBeDeleted);
+            message = "Leave deleted successfully";
+            return true;
         }
     }
 }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InterviewTest.DataAccess.Migrations
 {
     [DbContext(typeof(InterviewTestContext))]
-    [Migration("20200901151858_InitialCreate")]
+    [Migration("20200901201228_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -66,6 +66,23 @@ namespace InterviewTest.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("LeaveTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Vacation"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Medical Procedure"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Sickness"
+                        });
                 });
 
             modelBuilder.Entity("InterviewTest.Domain.Models.Leave", b =>

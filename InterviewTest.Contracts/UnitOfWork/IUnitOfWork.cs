@@ -9,5 +9,7 @@ namespace InterviewTest.Contracts.UnitOfWork
     {
         ILeaveRepository Leaves { get; }
         ILeaveTypeRepository LeaveTypes { get; }
+
+        int Complete();
     }
 }

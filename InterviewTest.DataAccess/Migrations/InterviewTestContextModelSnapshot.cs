@@ -64,6 +64,23 @@ namespace InterviewTest.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("LeaveTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Vacation"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Medical Procedure"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Sickness"
+                        });
                 });
 
             modelBuilder.Entity("InterviewTest.Domain.Models.Leave", b =>

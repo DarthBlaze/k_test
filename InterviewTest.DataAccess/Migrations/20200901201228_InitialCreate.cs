@@ -42,6 +42,21 @@ namespace InterviewTest.DataAccess.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "LeaveTypes",
+                columns: new[] { "Id", "Description" },
+                values: new object[] { 1, "Vacation" });
+
+            migrationBuilder.InsertData(
+                table: "LeaveTypes",
+                columns: new[] { "Id", "Description" },
+                values: new object[] { 2, "Medical Procedure" });
+
+            migrationBuilder.InsertData(
+                table: "LeaveTypes",
+                columns: new[] { "Id", "Description" },
+                values: new object[] { 3, "Sickness" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Leaves_LeaveTypeId",
                 table: "Leaves",

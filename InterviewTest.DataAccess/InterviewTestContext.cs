@@ -1,4 +1,5 @@
-﻿using InterviewTest.Domain.Models;
+﻿using InterviewTest.DataAccess.Configuratios;
+using InterviewTest.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -9,6 +10,11 @@ namespace InterviewTest.DataAccess
         public InterviewTestContext (DbContextOptions<InterviewTestContext> options): base(options)
         {
 
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new LeaveTypeConfiguration());
         }
 
         public virtual DbSet<Leave> Leaves { get; set; }

@@ -12,6 +12,7 @@ namespace InterviewTest.Contracts.Managers
         Leave GetLeave(int leaveId);
 
         IEnumerable<Leave> GetAllLeaves();
-       
+        Leave UpdateLeave(Leave leave, out string message);
+        bool DeleteLeave(int leaveId, out string message);
     }
 }
